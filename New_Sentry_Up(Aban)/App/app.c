@@ -98,7 +98,7 @@ void App_Task(void)
 		case STATE_NORMAL:
 			
 			#if CONFIG_VISION_TO_ECU
-//				Vision_Task();
+//				Vision_Task(); 
 			#else
 				Vofa_Task();
 			#endif
@@ -118,9 +118,9 @@ void App_Task(void)
 				else
 				{
 					// 应用层任务应放到最后调用
-//					Robot_Task();
-//					Gimbal_Task();
-//					Shoot_Task();
+					Robot_Task();
+					Gimbal_Task();
+					Shoot_Task();
 					Dr16.error_tick = 0;
 					Dr16.status = 1;
 				}

@@ -47,10 +47,8 @@ void Gimbal_Init(void)
 void Gimbal_Yaw_Get_Data(void)
 {
 	Gimbal.yaw_motor.current_speed = DJI_Motor[DJI_GIMBAL_GROUP].motor_data[DJI_MOTOR_GIMBAL_GM6020_YAW_RX_1].speed;
-	// Gimbal.yaw_motor.current_angle = msp(DJI_Motor[DJI_GIMBAL_GROUP].motor_data[DJI_MOTOR_GIMBAL_GM6020_YAW_RX_1].angle, 0, 8191, -180, 180);
 
 	Gimbal.yaw_motor.current_angle = msp(DJI_Motor[DJI_GIMBAL_GROUP].motor_data[DJI_MOTOR_GIMBAL_GM6020_YAW_RX_1].angle, 0, 8191, -180, 180);
-
 }
 
 

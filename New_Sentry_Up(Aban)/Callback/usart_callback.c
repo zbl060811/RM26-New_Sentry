@@ -25,8 +25,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		#else
 		At9s_Rx_Callback();
 		#endif
-		
-//		Vision_Rx_Callback();
 	}
 
 	if(huart->Instance == UART8)

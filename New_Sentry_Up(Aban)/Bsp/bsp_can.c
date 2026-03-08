@@ -1,7 +1,4 @@
 #include "bsp_can.h"
-
-
-
 uint8_t Bsp_Can1_Fifo0_Rx_Data[FIFO_RX_DATA];
 uint8_t Bsp_Can1_Fifo1_Rx_Data[FIFO_RX_DATA];
 uint8_t Bsp_Can2_Fifo0_Rx_Data[FIFO_RX_DATA];
