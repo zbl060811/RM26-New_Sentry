@@ -67,7 +67,7 @@ void App_Init(void)
 	
 	
 	// 应用层初始化
-	Gimbal_Init();
+	 Gimbal_Init();
 	Shoot_Init();
 	Public_Cmd_Init();
 	Robot_Init();
