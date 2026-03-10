@@ -42,3 +42,9 @@ new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
+new_sentry_up\can_callback.o: ../App/gimbal.h
+new_sentry_up\can_callback.o: ../Assistant/pid.h
+new_sentry_up\can_callback.o: ../Modules/mg_motor.h
+new_sentry_up\can_callback.o: ../Assistant/curve_mapping.h
+new_sentry_up\can_callback.o: ../Assistant/limiter.h
+new_sentry_up\can_callback.o: ../Assistant/filter.h

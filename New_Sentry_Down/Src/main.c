@@ -99,7 +99,7 @@ int main(void)
   MX_USART6_UART_Init();
   MX_CAN2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_Delay(2000);
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -10,8 +10,8 @@
 #define JUSTFLOAT_CH_COUNT  	10
 #define FIREWATER_CH_COUNT		10	
 #define VOFA_BUFFER_LENGTH		128	
-#define VOFA_USE_USART			huart6
-#define VOFA_USE_USART_RX_DMA	hdma_usart6_rx
+#define VOFA_USE_USART			huart8
+#define VOFA_USE_USART_RX_DMA	hdma_uart8_rx
 
 
 #define VOFA_TICK_TIME			10		

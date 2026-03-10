@@ -30,7 +30,7 @@ typedef enum
 
 typedef enum
 {
-	NX_VISION_LEN,
+	NX_VISION_LEN ,
 	NX_HEART_LEN,
 	NX_NAVIGATION = 21,
 } NxLenEnum;

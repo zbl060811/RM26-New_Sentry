@@ -180,6 +180,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>vision_buff</ItemText>
         </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Vofa</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow4>
         <Mm>

@@ -34,9 +34,10 @@ new_sentry\communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.
 new_sentry\communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_sentry\communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
+new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
+new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
-new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\communicate.o: ../Bsp/bsp_can.h
 new_sentry\communicate.o: ../Inc/can.h
 new_sentry\communicate.o: ../Inc/main.h

@@ -31,42 +31,24 @@ void Dji_Motor_Init(void)
 */
 void Dji_Motor_Rx_Filter_Set(void)
 {
-	BspCanRxFilterTypeDef can_rx_filter1;
-	BspCanRxFilterTypeDef can_rx_filter2;
+	BspCanRxFilterTypeDef can_rx_filter;
 	
-	can_rx_filter1.filter_id.sub.STID = 0x0000;
-	can_rx_filter1.filter_id.sub.EXID = 0x0000;
-	can_rx_filter1.filter_id.sub.IDE = 0;
-	can_rx_filter1.filter_id.sub.RTR = 0;
+	can_rx_filter.filter_id.sub.STID = 0x0000;
+	can_rx_filter.filter_id.sub.EXID = 0x0000;
+	can_rx_filter.filter_id.sub.IDE = 0;
+	can_rx_filter.filter_id.sub.RTR = 0;
 	
-	can_rx_filter1.filter_mask_id.sub.STID = 0x0000;
-	can_rx_filter1.filter_mask_id.sub.EXID = 0x0000;
-	can_rx_filter1.filter_mask_id.sub.IDE = 1;
-	can_rx_filter1.filter_mask_id.sub.RTR = 1;
+	can_rx_filter.filter_mask_id.sub.STID = 0x0000;
+	can_rx_filter.filter_mask_id.sub.EXID = 0x0000;
+	can_rx_filter.filter_mask_id.sub.IDE = 1;
+	can_rx_filter.filter_mask_id.sub.RTR = 1;
 	
-	can_rx_filter1.filter_bank = 0;				// use filter group 0
-	can_rx_filter1.hcan = &hcan1;				// use hcan1
-	can_rx_filter1.fifox = CAN_FilterFIFO0;		// use filter FIFO0
-	can_rx_filter1.filter_activation = CAN_FILTER_ENABLE;		// activate can filter
-
-	Bsp_Can_Rx_Filter_Set(&can_rx_filter1);
-
-	can_rx_filter2.filter_id.sub.STID = 0x0000;
-	can_rx_filter2.filter_id.sub.EXID = 0x0000;
-	can_rx_filter2.filter_id.sub.IDE = 0;
-	can_rx_filter2.filter_id.sub.RTR = 0;
+	can_rx_filter.filter_bank = 0;				// use filter group 0
+	can_rx_filter.hcan = &hcan1;				// use hcan1
+	can_rx_filter.fifox = CAN_FilterFIFO0;		// use filter FIFO0
+	can_rx_filter.filter_activation = CAN_FILTER_ENABLE;		// activate can filter
 	
-	can_rx_filter2.filter_mask_id.sub.STID = 0x0000;
-	can_rx_filter2.filter_mask_id.sub.EXID = 0x0000;
-	can_rx_filter2.filter_mask_id.sub.IDE = 1;
-	can_rx_filter2.filter_mask_id.sub.RTR = 1;
-	
-	can_rx_filter2.filter_bank = 14;				// use filter group 0
-	can_rx_filter2.hcan = &hcan2;				// use hcan1
-	can_rx_filter2.fifox = CAN_FilterFIFO0;		// use filter FIFO0
-	can_rx_filter2.filter_activation = CAN_FILTER_ENABLE;		// activate can filter
-
-	Bsp_Can_Rx_Filter_Set(&can_rx_filter2);
+	Bsp_Can_Rx_Filter_Set(&can_rx_filter);
 }
 
 

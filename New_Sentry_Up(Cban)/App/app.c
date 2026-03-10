@@ -72,10 +72,12 @@ void App_Init(void)
 	Public_Cmd_Init();
 	Robot_Init();
 
-	#if CONFIG_VISION_TO_ECU
-	Vision_Init();
-	#else
-	Vofa_Init();
+	#if CONFIG_USE_VISION
+		Vision_Init();
+	#endif
+
+	#if CONFIG_USE_VOFA
+		Vofa_Init();
 	#endif
 }
 
@@ -101,9 +103,11 @@ void App_Task(void)
 		
 		case STATE_NORMAL:
 			
-			#if CONFIG_VISION_TO_ECU
+			#if CONFIG_USE_VISION
 				Vision_Task();
-			#else
+			#endif
+			
+			#if CONFIG_USE_VOFA
 				Vofa_Task();
 			#endif
 

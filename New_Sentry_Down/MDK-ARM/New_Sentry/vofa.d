@@ -34,13 +34,13 @@ new_sentry\vofa.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_sentry\vofa.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_sentry\vofa.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
+new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
+new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
-new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\vofa.o: ../Bsp/bsp_usart.h
 new_sentry\vofa.o: ../Inc/usart.h
 new_sentry\vofa.o: ../Inc/main.h
-new_sentry\vofa.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
 new_sentry\vofa.o: ../App/chassis.h
 new_sentry\vofa.o: ../Modules/pid.h
 new_sentry\vofa.o: ../Modules/dji_motor.h
@@ -49,4 +49,3 @@ new_sentry\vofa.o: ../Inc/can.h
 new_sentry\vofa.o: ../Assistant/filter.h
 new_sentry\vofa.o: ../Assistant/limiter.h
 new_sentry\vofa.o: ../Assistant/curve_mapping.h
-new_sentry\vofa.o: ../Modules/communicate.h

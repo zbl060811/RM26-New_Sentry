@@ -111,10 +111,10 @@ void Vofa_Task(void)
 	
 	// float gimbal_yaw_angle[] = {Gimbal.yaw_motor.target_angle, Gimbal.yaw_motor.current_angle, Hi14.hi_data.euler.yaw, At9s.at9s_rc.left_x};
 	// float motor_angle[] ={Gimbal.yaw_motor.target_angle, Gimbal.yaw_motor.current_angle};
-	// float fiction_speed[] = {Shoot.friction_motor[0].target_speed, Shoot.friction_motor[0].current_speed};
+	float test[] = {1.11, 2.33};
 
 	// 临时调试：直接查看原始编码器值和映射结果
-	// Vofa_JustFloat_Send(motor_angle, 2);
+	Vofa_JustFloat_Send(test, 2);
 }
 
 

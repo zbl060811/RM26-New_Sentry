@@ -32,27 +32,27 @@ void Chassis_Init(void)
 	
 	// 底盘电机PID初始化
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed, 15, 0, 0, 0, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed, 15, 0.8, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed, 15, 0, 0, 0, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed, 15, 0.8, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed, 15, 0, 0, 0, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed, 15, 0.8, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed, 15, 0, 0, 0, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed, 15, 0.8, 0, 8000, 15000);
 	
 	// 云台YAW电机PID初始化
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed);
-	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 1000, 0, 0, 3000, 20000);
+	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 3000, 0, 0, 3000, 20000);
 	
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle);
-	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 0.8, 0, 0.05, 3000, 20000);
+	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 0.8, 0, 0, 3000, 20000);
 
 	// 底盘跟随电机PID初始化
 	Pid_Init(&Chassis.chassis_follow.pid_angle);
-	Pid_Set(&Chassis.chassis_follow.pid_angle, 30, 0, 0, 0, 8000);
+	Pid_Set(&Chassis.chassis_follow.pid_angle, 40, 0, 0, 0, 10000);
 	
 	// 角速度变化限制器初始化
     Angle_Rate_Limiter_Init(&Chassis.angle_change, 90.0f);
@@ -65,12 +65,12 @@ void Chassis_Init(void)
                        0.8f,        // 输出缩放比例
                        0.0f);      // 死区大小
 
-	Chassis.x_ramp.max_acceleration = 12000;
-	Chassis.x_ramp.max_deceleration = 10000;
+	Chassis.x_ramp.max_acceleration = 10000;
+	Chassis.x_ramp.max_deceleration = 8000;
 	Chassis.x_ramp.max_speed = 5000;
 
-	Chassis.y_ramp.max_acceleration = 12000;
-	Chassis.y_ramp.max_deceleration = 10000;
+	Chassis.y_ramp.max_acceleration = 10000;
+	Chassis.y_ramp.max_deceleration = 8000;
 	Chassis.y_ramp.max_speed = 5000;
 
 	Chassis.gryo_ramp.max_acceleration = 10000;
@@ -172,14 +172,14 @@ void Chassis_Yaw_Calc(void)
 	continuous_yaw = yaw_rotation_count * 360.0f + Can_Communicate.data.yaw;
 	previous_yaw = Can_Communicate.data.yaw;
 
-	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].current_angle = continuous_yaw - 75.0f;
+	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].current_angle = continuous_yaw;
 
 	if(first_enter){
 		Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle = Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].current_angle;
 		first_enter = 0;
 	}
 
-	float target_angle_increment = -(At9s.at9s_rc.left_x * 0.1f);
+	float target_angle_increment = -(At9s.at9s_rc.left_x * 0.6f);
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle += target_angle_increment;
 
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle.pid_data.output = Pid_Calc(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 

@@ -37,9 +37,10 @@ new_sentry\usart_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_u
 new_sentry\usart_callback.o: ../Modules/at9s.h
 new_sentry\usart_callback.o: ../Assistant/rm_typedef.h
 new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
+new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
+new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
-new_sentry\usart_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\usart_callback.o: ../Assistant/filter.h
 new_sentry\usart_callback.o: ../Modules/hi12.h
 new_sentry\usart_callback.o: ../Bsp/bsp_usart.h

@@ -19,10 +19,10 @@ void Gimbal_Init(void)
 	
     // 初始化yaw电机PID参数
 	Pid_Init(&Gimbal.yaw_motor.pid_speed);
-	Pid_Set(&Gimbal.yaw_motor.pid_speed, 12, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_speed, 20, 0, 0, 0, 20000);
 	
 	Pid_Init(&Gimbal.yaw_motor.pid_angle);
-	Pid_Set(&Gimbal.yaw_motor.pid_angle, 8, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_angle, 20, 0, 0, 0, 20000);
 
     // 初始化yaw曲线配置（立方曲线+死区） 
     Curve_Config_Init(&Gimbal.yaw_motor.stick_coinfig,
@@ -37,11 +37,7 @@ void Gimbal_Init(void)
 	
 	// 初始化角度限制
 	Angle_Limit_Init(&Gimbal.yaw_motor.angle_limit, YAW_MIN_ANGLE, YAW_MAX_ANGLE, YAW_SOFT_LIMIT, 1);
-    
-
-
-	
-} 
+}
 
 
 void Gimbal_Yaw_Get_Data(void)
@@ -72,7 +68,7 @@ float Gimbal_Yaw_Angle_Update(GimbalYawMotorTypeDef* motor, float target_angle_d
     float speed_target = Pid_Calc(&motor->pid_angle, 0, encoder_error);
     
     // 速度目标限幅
-    const float MAX_SPEED_TARGET = 4000.0f;
+    const float MAX_SPEED_TARGET = 5000.0f;
     if(speed_target > MAX_SPEED_TARGET) speed_target = MAX_SPEED_TARGET;
     if(speed_target < -MAX_SPEED_TARGET) speed_target = -MAX_SPEED_TARGET;
     
@@ -91,14 +87,15 @@ int16_t Gimbal_Yaw_Speed_Update(GimbalYawMotorTypeDef* motor, int16_t target_spe
 void Gimbal_Yaw_Calc(void)
 {
 //    float dt = GIMBAL_TICK_TIME / 1000.0f;
-    
+    float rc_input = 0;    
+
     #if CONFIG_USE_REMOTE
-        // float rc_input = Dr16.data.RC_Value.CH2 * 0.2;
+        // rc_input = Dr16.data.RC_Value.CH2 * 0.05f;
     #else
         float rc_input = At9s.at9s_rc.left_x;
     #endif
 
-    float rc_input = 0;
+    // float rc_input = 0;
 	
     // 立方曲线降低小摇杆灵敏度
     rc_input = Curve_MapWithDeadzone(rc_input, &Gimbal.yaw_motor.stick_coinfig);
@@ -150,7 +147,7 @@ void Gimbal_Pitch_Calc(void)
         float rc_input = At9s.at9s_rc.left_y;
     #endif
 
-    mg_motor.params.angle += rc_input * 1000;        // 目标角度增量，单位0.01度
+    mg_motor.params.angle += rc_input * 100;        // 目标角度增量，单位0.01度
     MG_Motor_PositionControl(&mg_motor);
 }
 

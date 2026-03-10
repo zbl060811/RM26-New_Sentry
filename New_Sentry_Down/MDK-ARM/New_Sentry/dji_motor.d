@@ -37,6 +37,7 @@ new_sentry\dji_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex
 new_sentry\dji_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 new_sentry\dji_motor.o: ../Assistant/rm_typedef.h
 new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
+new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
+new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
-new_sentry\dji_motor.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h

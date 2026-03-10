@@ -44,5 +44,6 @@ new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
 new_sentry\can_callback.o: ../Modules/communicate.h
 new_sentry\can_callback.o: ../Assistant/rm_typedef.h
 new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
-new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
+new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
 new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
+new_sentry\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h

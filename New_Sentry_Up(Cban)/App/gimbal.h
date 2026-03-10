@@ -13,7 +13,7 @@
 
 
 
-#define GIMBAL_TICK_TIME	10
+#define GIMBAL_TICK_TIME	1
 #define ENCODER_TO_ANGLE(x) ((float)(x) / 8191.0f * 360.0f)
 
 #define YAW_ZERO_OFFSET_DEGREES 	-60.0f	// yaw÷·¡„Œª∆´“∆Ω«∂»

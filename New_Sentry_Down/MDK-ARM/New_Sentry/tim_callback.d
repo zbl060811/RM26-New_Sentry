@@ -37,9 +37,10 @@ new_sentry\tim_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uar
 new_sentry\tim_callback.o: ../App/chassis.h
 new_sentry\tim_callback.o: ../Assistant/rm_typedef.h
 new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
+new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
+new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
-new_sentry\tim_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry\tim_callback.o: ../Modules/pid.h
 new_sentry\tim_callback.o: ../Modules/dji_motor.h
 new_sentry\tim_callback.o: ../Bsp/bsp_can.h

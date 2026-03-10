@@ -43,10 +43,7 @@ HAL_StatusTypeDef ret;
 
 void App_Init(void)
 {
-	// bsp层初始化
-	Bsp_Can_Init();
-	Bsp_Tim_Init();
-	Bsp_Usart_Init();
+	
 
 	// 模块层初始化
 	Dji_Motor_Init();
@@ -73,6 +70,11 @@ void App_Init(void)
 	#else
 	Vofa_Init();
 	#endif
+
+	// bsp层初始化
+	Bsp_Can_Init();
+	Bsp_Tim_Init();
+	Bsp_Usart_Init();
 }
 
 
@@ -98,7 +100,7 @@ void App_Task(void)
 		case STATE_NORMAL:
 			
 			#if CONFIG_VISION_TO_ECU
-//				Vision_Task(); 
+//				Vision_Task();
 			#else
 				Vofa_Task();
 			#endif
