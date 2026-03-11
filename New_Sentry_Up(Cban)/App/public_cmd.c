@@ -8,9 +8,8 @@
 
 
 PublicCmdTypeDef Public = {
-    {&hcan2,
-    CAN_COMMUNICATE_SEND_ID,
-    CAN_COMMUNICATE_LOCAL_ID},
+    {&hcan2, LOWER_BORAD_CAN_ID, LOCAL_CAN_ID},
+    {&hcan2, DISTRIBUTION_CAN_ID, LOCAL_CAN_ID}
 };
 
 
@@ -36,7 +35,7 @@ void Public_Send_Rc(void)
     #endif
     
 
-    Communicate_Send(&Public.can_com, (uint8_t *)&Public.rc_data, 8);
+    Communicate_Send(&Public.up_low_com, (uint8_t *)&Public.rc_data, 8);
 }
 
 
@@ -47,7 +46,7 @@ void Public_Send_Eular(void)
     Public.eular_data.pitch = (int16_t)(Hi14.hi_data.euler.pitch * 100);
     Public.eular_data.yaw = (int16_t)(Hi14.hi_data.euler.yaw * 100);
 
-    Communicate_Send(&Public.can_com, (uint8_t *)&Public.eular_data, 8);
+    Communicate_Send(&Public.up_low_com, (uint8_t *)&Public.eular_data, 8);
 }
 
 
@@ -57,7 +56,7 @@ void Public_Send_Status(void)
     Public.status_data.rc_status = Dr16.status;
     Public.status_data.sport_mode = Robot.status.sport_mode;
 
-    Communicate_Send(&Public.can_com, (uint8_t *)&Public.status_data, 8);
+    Communicate_Send(&Public.up_low_com, (uint8_t *)&Public.status_data, 8);
 }
 
 

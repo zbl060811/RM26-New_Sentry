@@ -49,3 +49,4 @@ new_sentry\vofa.o: ../Inc/can.h
 new_sentry\vofa.o: ../Assistant/filter.h
 new_sentry\vofa.o: ../Assistant/limiter.h
 new_sentry\vofa.o: ../Assistant/curve_mapping.h
+new_sentry\vofa.o: ../Modules/communicate.h

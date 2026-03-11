@@ -52,7 +52,9 @@ typedef struct Public_Status_Struct_T
 typedef struct Public_Cmd_Struct_T
 {
 
-    CanCommunicateTypeDef can_com;
+    CanCommunicateTypeDef up_low_com;
+    CanCommunicateTypeDef distribution_com;
+    
     PublicRcTypeDef rc_data;
     PublicEularTypeDef eular_data;
     PublicStatusTypeDef status_data;

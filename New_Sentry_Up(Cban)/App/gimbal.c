@@ -19,10 +19,10 @@ void Gimbal_Init(void)
 	
     // 初始化yaw电机PID参数
 	Pid_Init(&Gimbal.yaw_motor.pid_speed);
-	Pid_Set(&Gimbal.yaw_motor.pid_speed, 20, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_speed, 200, 25, 0, 0, 20000);
 	
 	Pid_Init(&Gimbal.yaw_motor.pid_angle);
-	Pid_Set(&Gimbal.yaw_motor.pid_angle, 20, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_angle, 3, 0.1, 0, 0, 20000);
 
     // 初始化yaw曲线配置（立方曲线+死区） 
     Curve_Config_Init(&Gimbal.yaw_motor.stick_coinfig,

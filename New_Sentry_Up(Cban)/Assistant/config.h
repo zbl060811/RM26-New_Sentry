@@ -9,7 +9,7 @@
 
 #define CONFIG_USE_VISION       0       // 1:使用视觉 0:不使用视觉
 #define CONFIG_USE_REMOTE       1       // 1:使用DR16 0:使用AT9S
-#define CONFIG_USE_VOFA         0       // 1:使用VOFA 0:不使用VOFA
+#define CONFIG_USE_VOFA         1       // 1:使用VOFA 0:不使用VOFA
 
 
 

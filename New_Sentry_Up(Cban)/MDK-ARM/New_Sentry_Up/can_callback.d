@@ -35,13 +35,15 @@ new_sentry_up\can_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 new_sentry_up\can_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_sentry_up\can_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_sentry_up\can_callback.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-new_sentry_up\can_callback.o: ../Modules/dji_motor.h
+new_sentry_up\can_callback.o: ../App/public_cmd.h
 new_sentry_up\can_callback.o: ../Assistant/rm_typedef.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\math.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdio.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry_up\can_callback.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
+new_sentry_up\can_callback.o: ../Modules/communicate.h
+new_sentry_up\can_callback.o: ../Modules/dji_motor.h
 new_sentry_up\can_callback.o: ../App/gimbal.h
 new_sentry_up\can_callback.o: ../Assistant/pid.h
 new_sentry_up\can_callback.o: ../Modules/mg_motor.h

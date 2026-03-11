@@ -185,6 +185,26 @@
           <WinNumber>1</WinNumber>
           <ItemText>Vofa</ItemText>
         </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Bsp_Can2_Fifo0_Rx_Data,0x10</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Bsp_Can2_Fifo1_Rx_Data</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hcan,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Bsp_Can1_Fifo0_Rx_Data</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow4>
         <Mm>

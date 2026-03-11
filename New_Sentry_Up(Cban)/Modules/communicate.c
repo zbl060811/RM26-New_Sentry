@@ -46,3 +46,41 @@ HAL_StatusTypeDef Communicate_Send(CanCommunicateTypeDef *can, uint8_t *data, ui
 	return HAL_CAN_AddTxMessage(can->hcan, &tx_header, data, &tx_email);
 }
 
+char Communicate_Get_Data(CanCommunicateTypeDef *can, CAN_RxHeaderTypeDef *rxheader, uint8_t *rx_buffer)
+{
+    uint16_t rx_stdid = 0;
+    uint16_t rx_num = 0;
+
+    rx_stdid = rxheader->StdId;
+    rx_num = rxheader->DLC;
+
+    // 判断接收到的ID是否为服务ID，且数据长度正确
+    if(rx_stdid != can->TX_STD_ID || rx_num != 8){
+        return ERROR;
+    }
+
+    Communicate_Data_Process(rx_buffer);
+    return SUCCESS;
+}
+
+
+void Communicate_Data_Process(uint8_t *rx_buffer)
+{   
+    switch(rx_buffer[0]){
+        case 0x01:
+            
+            break;
+        
+        case 0x02:
+            
+            break;
+
+        case 0x03:
+            
+            break;
+
+        default:
+            break;
+    }
+}
+
