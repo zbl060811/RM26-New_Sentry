@@ -1,6 +1,6 @@
 Dependencies for Project 'Distribution_Board', Target 'Distribution_Board': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (..\App\app.c)(0x69B1127D)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\app.o --omf_browse distribution_board\app.crf --depend distribution_board\app.d)
+F (..\App\app.c)(0x69B19958)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\app.o --omf_browse distribution_board\app.crf --depend distribution_board\app.d)
 I (..\App\app.h)(0x69B04EFF)
 I (..\App\public.h)(0x69B111D1)
 I (../Modules/comm.h)(0x69B11077)
@@ -38,9 +38,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x68BEF472)
-I (../Modules/nx_topic.h)(0x69B193F7)
+I (../Modules/nx_topic.h)(0x69B19950)
 I (../Bsp/bsp_uart.h)(0x69B04F08)
-I (../Core/Inc/usart.h)(0x69B04BFA)
+I (../Core/Inc/usart.h)(0x69B196BC)
 I (../Modules/vofa.h)(0x69B04A06)
 I (../Bsp/bsp_tim.h)(0x69B05EF5)
 I (../Core/Inc/tim.h)(0x69B05D44)
@@ -162,10 +162,10 @@ I (../App/public.h)(0x69B111D1)
 I (../Modules/comm.h)(0x69B11077)
 F (..\Modules\vofa.c)(0x69B05224)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\vofa.o --omf_browse distribution_board\vofa.crf --depend distribution_board\vofa.d)
 I (..\Modules\vofa.h)(0x69B04A06)
-F (..\Modules\nx_topic.c)(0x69B193F9)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\nx_topic.o --omf_browse distribution_board\nx_topic.crf --depend distribution_board\nx_topic.d)
-I (..\Modules\nx_topic.h)(0x69B193F7)
+F (..\Modules\nx_topic.c)(0x69B1995D)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\nx_topic.o --omf_browse distribution_board\nx_topic.crf --depend distribution_board\nx_topic.d)
+I (..\Modules\nx_topic.h)(0x69B19950)
 I (../Bsp/bsp_uart.h)(0x69B04F08)
-I (../Core/Inc/usart.h)(0x69B04BFA)
+I (../Core/Inc/usart.h)(0x69B196BC)
 I (../Core/Inc/main.h)(0x69B038A7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x68BEF472)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69B05D44)
@@ -236,7 +236,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x68BEF472)
 F (..\Bsp\bsp_uart.c)(0x69B0521F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\bsp_uart.o --omf_browse distribution_board\bsp_uart.crf --depend distribution_board\bsp_uart.d)
 I (..\Bsp\bsp_uart.h)(0x69B04F08)
-I (../Core/Inc/usart.h)(0x69B04BFA)
+I (../Core/Inc/usart.h)(0x69B196BC)
 I (../Core/Inc/main.h)(0x69B038A7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x68BEF472)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69B05D44)
@@ -340,8 +340,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x68BEF472)
-F (startup_stm32f407xx.s)(0x69B19478)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 542" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o distribution_board\startup_stm32f407xx.o --depend distribution_board\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x69B18EED)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\main.o --omf_browse distribution_board\main.crf --depend distribution_board\main.d)
+F (startup_stm32f407xx.s)(0x69B19714)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 542" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o distribution_board\startup_stm32f407xx.o --depend distribution_board\startup_stm32f407xx.d)
+F (../Core/Src/main.c)(0x69B195EF)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\main.o --omf_browse distribution_board\main.crf --depend distribution_board\main.d)
 I (../Core/Inc/main.h)(0x69B038A7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x68BEF472)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69B05D44)
@@ -377,7 +377,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x68BEF472)
 I (../Core/Inc/can.h)(0x69B04D41)
 I (../Core/Inc/dma.h)(0x69B048B3)
 I (../Core/Inc/tim.h)(0x69B05D44)
-I (../Core/Inc/usart.h)(0x69B04BFA)
+I (../Core/Inc/usart.h)(0x69B196BC)
 I (../Core/Inc/gpio.h)(0x69B038A6)
 I (../App/app.h)(0x69B04EFF)
 F (../Core/Src/gpio.c)(0x69B04D41)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\gpio.o --omf_browse distribution_board\gpio.crf --depend distribution_board\gpio.d)
@@ -516,8 +516,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x68BEF472)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x68BEF472)
-F (../Core/Src/usart.c)(0x69B19474)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\usart.o --omf_browse distribution_board\usart.crf --depend distribution_board\usart.d)
-I (../Core/Inc/usart.h)(0x69B04BFA)
+F (../Core/Src/usart.c)(0x69B19712)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Callback -I ../App -I ../Modules -I ../Bsp-I.\RTE\_Distribution_Board-IC:\Keil\MDK51_32\ARM\CMSIS\6.1.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o distribution_board\usart.o --omf_browse distribution_board\usart.crf --depend distribution_board\usart.d)
+I (../Core/Inc/usart.h)(0x69B196BC)
 I (../Core/Inc/main.h)(0x69B038A7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x68BEF472)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69B05D44)

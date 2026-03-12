@@ -25,6 +25,7 @@ void App_Init(void)
 	
 	// 模块层初始化
 	Communicate_Init();
+    Nx_Topic_Init();
 }
 
 
