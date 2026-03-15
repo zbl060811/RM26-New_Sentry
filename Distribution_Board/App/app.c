@@ -49,7 +49,7 @@ void App_Task(void)
         
         case STATE_NORMAL:
 
-            Public_Cmd_Task();
+            // Public_Cmd_Task();
 
             break;
         

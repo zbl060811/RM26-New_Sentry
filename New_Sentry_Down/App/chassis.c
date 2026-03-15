@@ -64,15 +64,15 @@ void Chassis_Init(void)
 
 	Chassis.x_ramp.max_acceleration = 10000;
 	Chassis.x_ramp.max_deceleration = 8000;
-	Chassis.x_ramp.max_speed = 4000;
+	Chassis.x_ramp.max_speed = 3000;
 
 	Chassis.y_ramp.max_acceleration = 10000;
 	Chassis.y_ramp.max_deceleration = 8000;
-	Chassis.y_ramp.max_speed = 4000;
+	Chassis.y_ramp.max_speed = 3000;
 
 	Chassis.gryo_ramp.max_acceleration = 10000;
 	Chassis.gryo_ramp.max_deceleration = 10000;
-	Chassis.gryo_ramp.max_speed = 3000;
+	Chassis.gryo_ramp.max_speed = 5000;
 
 }
 

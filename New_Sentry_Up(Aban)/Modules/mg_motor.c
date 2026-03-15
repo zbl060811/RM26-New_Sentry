@@ -10,7 +10,7 @@ void Mg_Motor_Init(MGMotorTypeDef *Motor)
     Motor->params.hcan = &hcan2; // 设置CAN句柄
     Motor->params.motor_id = MG_Motor_ID_1; // 设置电机ID
     Motor->params.angle = 10000; // 初始角度
-    Motor->params.speed = 400; // 初始速度
+    Motor->params.speed = 500; // 初始速度
 
     Motor->speed_max = 500; // 最大输出速度（单位：0.01度/秒）
     Motor->angle_min = -20000; // 最小输出角度（单位：0.01度）

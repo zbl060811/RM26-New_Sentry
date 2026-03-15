@@ -1,5 +1,7 @@
 #include "shoot.h"
+#include "robot.h"
 #include "dji_motor.h"
+#include "dr16.h"
 
 
 
@@ -36,15 +38,15 @@ void Shoot_Dial_Get_Data(void)
 
 void Shoot_Control(void)
 {
-    switch(Shoot.mode){
+    switch(Robot.status.fire_mode){
         case SHOOT_STOP:
             Shoot.friction_motor[0].target_speed = 0;
             Shoot.friction_motor[1].target_speed = 0;
             Shoot.dial_motor.target_speed = 0;
             break;
         case SHOOT_FIRE:
-            Shoot.friction_motor[0].target_speed = -6000;
-            Shoot.friction_motor[1].target_speed = 6000;
+            Shoot.friction_motor[0].target_speed = -6000 * Dr16.data.RC_Value.Wheel;	// 根据遥控器拨轮的值调整射速
+            Shoot.friction_motor[1].target_speed = 6000 * Dr16.data.RC_Value.Wheel;	
             Shoot.dial_motor.target_speed = 8000;
             break;
         case SHOOT_BACK:

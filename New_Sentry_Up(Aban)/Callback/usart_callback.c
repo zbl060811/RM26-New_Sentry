@@ -8,6 +8,7 @@
 #include "hi14.h"
 #include "vofa.h"
 #include "dr16.h"
+#include "nx_topic.h"
 
 
 
@@ -29,11 +30,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 
 	if(huart->Instance == UART8)
 	{	
-		#if CONFIG_VISION_TO_ECU
-		Vision_Rx_Callback();
-		#else
-		Vofa_Rx_Callback(Size);
-		#endif
+		Nx_Rx_Callback(&vision_topic, vision_topic.rx_buffer, Size);
 	}
 }
 

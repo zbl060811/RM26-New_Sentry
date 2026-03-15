@@ -7,9 +7,9 @@
 
 
 
-#define NX_RX_BUFFER_LENGTH		32
-#define NX_USE_USART            huart4
-#define NX_USE_USART_RX_DMA	    hdma_uart4_rx
+#define NX_RX_BUFFER_LENGTH		64
+#define NX_USE_USART            huart1
+#define NX_USE_USART_RX_DMA	    hdma_usart1_rx
 
 #define NX_RX_TAIL		0X51
 
@@ -59,7 +59,6 @@ typedef struct
 	uint8_t flag;
 	uint8_t tick;
 	
-	uint8_t rx_buffer[NX_RX_BUFFER_LENGTH];
     NxCombinedFrame_t combined;
     NxHeartbeatFrame_t heartbeat;
 } NxTopicTyepDef;
@@ -72,6 +71,9 @@ typedef struct
 
 void Nx_Topic_Init(void);
 void Nx_Parse_Data(NxTopicTyepDef *nx_data, uint8_t *data, uint16_t len);
+void Nx_Rx_Handler(uint16_t len);
+
+
 
 
 

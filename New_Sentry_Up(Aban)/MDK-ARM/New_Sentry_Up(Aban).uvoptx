@@ -183,17 +183,17 @@
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Bsp_Can1_Fifo1_Rx_Data</ItemText>
+          <ItemText>mg_motor,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Bsp_Can2_Fifo1_Rx_Data</ItemText>
+          <ItemText>vision_topic,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>mg_motor</ItemText>
+          <ItemText>Robot</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

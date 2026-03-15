@@ -4,12 +4,13 @@
 
 NxTopicTyepDef nx_topic;
 
+uint8_t rx_buffer[NX_RX_BUFFER_LENGTH];
 
 
 void Nx_Topic_Init(void)
 {
-    HAL_UARTEx_ReceiveToIdle_DMA(&NX_USE_USART, nx_topic.rx_buffer, NX_RX_BUFFER_LENGTH);
-    __HAL_DMA_DISABLE_IT(&NX_USE_USART_RX_DMA,DMA_IT_HT);
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, rx_buffer, NX_RX_BUFFER_LENGTH);
+    __HAL_DMA_DISABLE_IT(&hdma_usart1_rx,DMA_IT_HT);
 }
 
 
@@ -102,3 +103,16 @@ void Nx_Parse_Data(NxTopicTyepDef *nx_data, uint8_t *data, uint16_t len)
         idx += frame_len;
     }
 }
+
+
+void Nx_Rx_Handler(uint16_t len)
+{	
+    /* 解析接收到的数据 */
+    // Nx_Parse_Data(&nx_topic, nx_topic.rx_buffer, len);
+
+    /* 处理完毕后，重新开启DMA接收 */
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, rx_buffer, NX_RX_BUFFER_LENGTH);
+    __HAL_DMA_DISABLE_IT(&hdma_usart1_rx,DMA_IT_HT);
+}
+
+

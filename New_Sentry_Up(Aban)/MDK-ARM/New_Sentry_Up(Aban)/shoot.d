@@ -39,7 +39,9 @@ new_sentry_up(aban)\shoot.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdlib.h
 new_sentry_up(aban)\shoot.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\string.h
 new_sentry_up(aban)\shoot.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
 new_sentry_up(aban)\shoot.o: ../Assistant/pid.h
+new_sentry_up(aban)\shoot.o: ..\App\robot.h
 new_sentry_up(aban)\shoot.o: ../Modules/dji_motor.h
 new_sentry_up(aban)\shoot.o: ../Bsp/bsp_can.h
 new_sentry_up(aban)\shoot.o: ../Core/Inc/can.h
 new_sentry_up(aban)\shoot.o: ../Core/Inc/main.h
+new_sentry_up(aban)\shoot.o: ../Modules/dr16.h

@@ -27,7 +27,7 @@
 #include "hi14.h"
 #include "dr16.h"
 #include "communicate.h"
-
+#include "nx_topic.h"
 
 
 /* ====== 驱动层 ====== */
@@ -43,8 +43,6 @@ HAL_StatusTypeDef ret;
 
 void App_Init(void)
 {
-	
-
 	// 模块层初始化
 	Dji_Motor_Init();
 
@@ -57,6 +55,7 @@ void App_Init(void)
 	Hi14_Init();
 	Communicate_Init();      
 	Mg_Motor_Init(&mg_motor);
+	Nx_Topic_Init(&vision_topic);
 	
 	
 	// 应用层初始化
@@ -102,7 +101,7 @@ void App_Task(void)
 			#if CONFIG_VISION_TO_ECU
 //				Vision_Task();
 			#else
-				Vofa_Task();
+				// Vofa_Task();
 			#endif
 
 			

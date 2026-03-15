@@ -19,10 +19,10 @@ void Gimbal_Init(void)
 	
     // 初始化yaw电机PID参数
 	Pid_Init(&Gimbal.yaw_motor.pid_speed);
-	Pid_Set(&Gimbal.yaw_motor.pid_speed, 12, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_speed, 200, 25, 0, 0, 20000);
 	
 	Pid_Init(&Gimbal.yaw_motor.pid_angle);
-	Pid_Set(&Gimbal.yaw_motor.pid_angle, 8, 0, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_angle, 3, 0.1, 0, 0, 20000);
 
     // 初始化yaw曲线配置（立方曲线+死区） 
     Curve_Config_Init(&Gimbal.yaw_motor.stick_coinfig,
@@ -37,10 +37,6 @@ void Gimbal_Init(void)
 	
 	// 初始化角度限制
 	Angle_Limit_Init(&Gimbal.yaw_motor.angle_limit, YAW_MIN_ANGLE, YAW_MAX_ANGLE, YAW_SOFT_LIMIT, 1);
-    
-
-
-	
 } 
 
 
@@ -150,7 +146,7 @@ void Gimbal_Pitch_Calc(void)
         float rc_input = At9s.at9s_rc.left_y;
     #endif
 
-    mg_motor.params.angle += rc_input * 1000;        // 目标角度增量，单位0.01度
+    mg_motor.params.angle += rc_input * 100;        // 目标角度增量，单位0.01度
     MG_Motor_PositionControl(&mg_motor);
 }
 

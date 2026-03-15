@@ -44,7 +44,6 @@ typedef struct Shoot_Struct_T
 	uint8_t flag;
 	uint32_t tick;
 
-	ShootModeEnum mode;
 	ShootFrictionMotorTypeDef friction_motor[2];	// 0:右电机 1：左电机
 	ShootDialMotorTypeDef dial_motor;		// 拨盘电机
 } ShootTypeDef;
