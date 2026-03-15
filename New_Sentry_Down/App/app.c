@@ -28,7 +28,7 @@
 #include "bsp_tim.h"
 
 
- #define DEBUG_TEST 	1
+ #define DEBUG_TEST 	0
 
 AppStateEnum AppState = STATE_NONE;
 

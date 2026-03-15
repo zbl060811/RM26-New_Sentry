@@ -49,4 +49,5 @@ new_sentry_up(aban)\public_cmd.o: ../Assistant/filter.h
 new_sentry_up(aban)\public_cmd.o: ../Modules/dr16.h
 new_sentry_up(aban)\public_cmd.o: ../Modules/hi14.h
 new_sentry_up(aban)\public_cmd.o: ../Bsp/bsp_usart.h
+new_sentry_up(aban)\public_cmd.o: ../Modules/nx_topic.h
 new_sentry_up(aban)\public_cmd.o: ../Assistant/config.h

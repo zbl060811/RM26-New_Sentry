@@ -64,13 +64,18 @@ char Communicate_Get_Data(CanCommunicateTypeDef *can, CAN_RxHeaderTypeDef *rxhea
 void Communicate_Data_Process(uint8_t *rx_buffer)
 {   
     int16_t yaw_rate, pitch, yaw;
+    int16_t vision_yaw, vision_pitch;
     
     switch(rx_buffer[0]){
-        case CAN_MSG_RC:
+        case CAN_MSG_RC_LEFT:
+            Can_Communicate.data.rc_left_x = (int16_t)(rx_buffer[2] << 8 | rx_buffer[1]);
+            Can_Communicate.data.rc_left_y = (int16_t)(rx_buffer[4] << 8 | rx_buffer[3]);
+            break;
+
+        case CAN_MSG_RC_RIGHT:
             Can_Communicate.data.rc_right_x = (int16_t)(rx_buffer[2] << 8 | rx_buffer[1]);
             Can_Communicate.data.rc_right_y = (int16_t)(rx_buffer[4] << 8 | rx_buffer[3]);
-            Can_Communicate.data.rc_left_x = (int16_t)(rx_buffer[6] << 8 | rx_buffer[5]); // 处理遥控器数据
-            break;
+        break;
         
         case CAN_MSG_EULAR:
             yaw_rate = (int16_t)(rx_buffer[2] << 8 | rx_buffer[1]);
@@ -85,6 +90,17 @@ void Communicate_Data_Process(uint8_t *rx_buffer)
         case CAN_MSG_STATUS:
             Can_Communicate.data.rc_status = rx_buffer[1];   // 处理机器人状态数据
             Can_Communicate.data.sport_mode = rx_buffer[2];  // 运动模式
+            Can_Communicate.data.power_mode = rx_buffer[3];  // 电源模式
+            break;
+
+        case CAN_MSG_VISION:
+            Can_Communicate.data.target_found = rx_buffer[1];   // 是否检测到目标
+            Can_Communicate.data.target_id = rx_buffer[2];      // 目标ID
+            vision_yaw = (int16_t)(rx_buffer[4] << 8 | rx_buffer[3]);
+            vision_pitch = (int16_t)(rx_buffer[6] << 8 | rx_buffer[5]);
+
+            Can_Communicate.data.vision_yaw = vision_yaw / 1000.0f;
+            Can_Communicate.data.vision_pitch = vision_pitch / 1000.0f;
             break;
 
         default:
