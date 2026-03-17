@@ -47,7 +47,7 @@ void Bsp_Can_Rx_Filter_Set(BspCanRxFilterTypeDef *rx_filter_para)
 	can_filter_config.FilterMaskIdLow = rx_filter_para->filter_mask_id.value.LOW;
 	
 	can_filter_config.FilterFIFOAssignment = rx_filter_para->fifox;		// choice can receive fifo
-	can_filter_config.SlaveStartFilterBank = rx_filter_para->slave_start_filter_bank;	// can1(0-13)ºÍcan2(14-27)Each gets half filter
+	can_filter_config.SlaveStartFilterBank = rx_filter_para->slave_start_filter_bank;	// can1(0-13)ï¿½ï¿½can2(14-27)Each gets half filter
 	can_filter_config.FilterActivation = rx_filter_para->filter_activation;
 	
 	HAL_CAN_ConfigFilter(rx_filter_para->hcan, &can_filter_config);		// config can filter

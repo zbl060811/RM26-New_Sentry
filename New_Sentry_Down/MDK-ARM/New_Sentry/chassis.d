@@ -48,8 +48,6 @@ new_sentry\chassis.o: ../Assistant/limiter.h
 new_sentry\chassis.o: ../Assistant/curve_mapping.h
 new_sentry\chassis.o: ../Modules/led.h
 new_sentry\chassis.o: ../Inc/gpio.h
-new_sentry\chassis.o: ../Modules/at9s.h
-new_sentry\chassis.o: ../Inc/usart.h
 new_sentry\chassis.o: ../Modules/communicate.h
 new_sentry\chassis.o: ../Bsp/bsp_tim.h
 new_sentry\chassis.o: ../Inc/tim.h

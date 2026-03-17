@@ -14,13 +14,13 @@
 #include "tim_callback.h"
 
 /* ====== 模块层 ====== */
-#include "at9s.h"
 #include "buzzer.h"
 #include "led.h"
 #include "dji_motor.h"
 #include "super_cap.h"
 #include "hi12.h"
 #include "communicate.h"
+#include "referee.h"
 
 /* ====== 模块层 ====== */
 #include "bsp_can.h"
@@ -28,7 +28,7 @@
 #include "bsp_tim.h"
 
 
- #define DEBUG_TEST 	0
+ #define DEBUG_TEST 	1
 
 AppStateEnum AppState = STATE_NONE;
 
@@ -42,11 +42,11 @@ void App_Init(void)
 	
 	// 模块层初始化
 	Dji_Motor_Init();
-	At9s_Init();
 	Led_Init();
 	Buzzer_Init();
 	Hi12_Init();
 	Communicate_Init();
+	RefereeInit();
 	
 	// 辅助层初始化
 	Vofa_Init();

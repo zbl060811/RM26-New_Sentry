@@ -188,7 +188,7 @@
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>vision_topic,0x0A</ItemText>
+          <ItemText>vision_topic,0x10</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
@@ -199,6 +199,11 @@
           <count>8</count>
           <WinNumber>1</WinNumber>
           <ItemText>Public,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Size,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

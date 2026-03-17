@@ -41,6 +41,3 @@ new_sentry\communicate.o: C:\Keil\MDK51_32\ARM\ARMCC\Bin\..\include\stdbool.h
 new_sentry\communicate.o: ../Bsp/bsp_can.h
 new_sentry\communicate.o: ../Inc/can.h
 new_sentry\communicate.o: ../Inc/main.h
-new_sentry\communicate.o: ..\Modules\at9s.h
-new_sentry\communicate.o: ../Inc/usart.h
-new_sentry\communicate.o: ../Assistant/filter.h

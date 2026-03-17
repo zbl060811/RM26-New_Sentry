@@ -1,9 +1,11 @@
 #include "gimbal.h"
+#include "robot.h"
 #include "dji_motor.h"
 #include "config.h"
 #include "at9s.h"
 #include "dr16.h"
 #include "hi14.h"
+#include "nx_topic.h"
 #include "mg_motor.h"
 
 
@@ -134,21 +136,50 @@ void Gimbal_Yaw_Calc(void)
 
 void Gimbal_Pitch_Calc(void)
 {
-    /*
-        使用模式：多圈位置闭环控制命令2（可控速度）
-        向上最大：200
-        中心点：  0
-        向下最大：-200
-    */
+    #define PITCH_SCALE         10.0f    // 视觉角度到电机单位的换算
+    #define PITCH_DEADZONE      0.3f     // 死区
+    
+    // 遥控器输入
     #if CONFIG_USE_REMOTE
         float rc_input = Dr16.data.RC_Value.CH3;
     #else
         float rc_input = At9s.at9s_rc.left_y;
     #endif
 
-    mg_motor.params.angle += rc_input * 100;        // 目标角度增量，单位0.01度
-    MG_Motor_PositionControl(&mg_motor);
+    if(Robot.status.control_mode == FIRE_MODE_AUTO && 
+       vision_topic.parsed_frame.data.combined.target_found == 1)
+    {
+        // 获取视觉偏差
+        float pitch_error = vision_topic.parsed_frame.data.combined.pitch;
+        
+        // 死区处理
+        if(fabsf(pitch_error) < PITCH_DEADZONE)
+        {
+            pitch_error = 0;
+        }
+        
+        // 关键修改：期望角度 = 当前实际角度 + 偏差
+        // 使用 current_angle（实际位置），而不是 params.angle（目标位置）
+        float desired_angle = mg_motor.params.angle - pitch_error * PITCH_SCALE;
+        float current_target = mg_motor.params.angle;
+        float step = desired_angle - current_target;
+        
+        mg_motor.params.angle = current_target + step;
+    }
+    else
+    {
+        // 手动控制
+        mg_motor.params.angle += rc_input * 100;
+    }
+
+    // 执行控制
+    if(mg_motor.params.last_angle != mg_motor.params.angle)
+    {
+        MG_Motor_PositionControl(&mg_motor);
+        mg_motor.params.last_angle = mg_motor.params.angle;
+    }
 }
+
 
 void Gimbal_Task(void)
 {

@@ -454,16 +454,16 @@
               <FileType>1</FileType>
               <FilePath>..\Assistant\curve_mapping.c</FilePath>
             </File>
+            <File>
+              <FileName>crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Assistant\crc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Modules</GroupName>
           <Files>
-            <File>
-              <FileName>at9s.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Modules\at9s.c</FilePath>
-            </File>
             <File>
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
@@ -493,6 +493,21 @@
               <FileName>communicate.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Modules\communicate.c</FilePath>
+            </File>
+            <File>
+              <FileName>referee.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Modules\referee.c</FilePath>
+            </File>
+            <File>
+              <FileName>referee_protocol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Modules\referee_protocol.h</FilePath>
+            </File>
+            <File>
+              <FileName>referee.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Modules\referee.h</FilePath>
             </File>
           </Files>
         </Group>

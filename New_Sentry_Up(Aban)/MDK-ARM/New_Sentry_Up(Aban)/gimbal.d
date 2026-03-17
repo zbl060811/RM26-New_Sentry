@@ -46,6 +46,7 @@ new_sentry_up(aban)\gimbal.o: ../Core/Inc/main.h
 new_sentry_up(aban)\gimbal.o: ../Assistant/curve_mapping.h
 new_sentry_up(aban)\gimbal.o: ../Assistant/limiter.h
 new_sentry_up(aban)\gimbal.o: ../Assistant/filter.h
+new_sentry_up(aban)\gimbal.o: ..\App\robot.h
 new_sentry_up(aban)\gimbal.o: ../Modules/dji_motor.h
 new_sentry_up(aban)\gimbal.o: ../Assistant/config.h
 new_sentry_up(aban)\gimbal.o: ../Modules/at9s.h
@@ -53,3 +54,4 @@ new_sentry_up(aban)\gimbal.o: ../Core/Inc/usart.h
 new_sentry_up(aban)\gimbal.o: ../Modules/dr16.h
 new_sentry_up(aban)\gimbal.o: ../Modules/hi14.h
 new_sentry_up(aban)\gimbal.o: ../Bsp/bsp_usart.h
+new_sentry_up(aban)\gimbal.o: ../Modules/nx_topic.h

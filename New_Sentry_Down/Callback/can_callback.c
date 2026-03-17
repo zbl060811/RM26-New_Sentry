@@ -22,7 +22,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		Dji_Motor_Get_Data(DJI_CHASSIS_GROUP, &rx_header, Bsp_Can1_Fifo0_Rx_Data);
 		Dji_Motor_Get_Data(DJI_GIMBAL_GROUP, &rx_header, Bsp_Can1_Fifo0_Rx_Data);	
 	}	
-	
 	if(hcan == &hcan2)
 	{
 		error = HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, Bsp_Can2_Fifo0_Rx_Data);

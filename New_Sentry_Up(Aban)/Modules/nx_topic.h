@@ -20,6 +20,7 @@
 #pragma pack(1)
 
 
+
 typedef enum
 {
 	NX_TYPE_VISION = 0x02,
@@ -31,7 +32,7 @@ typedef enum
 {
 	NX_VISION_LEN ,
 	NX_HEART_LEN = 9,
-	NX_NAVIGATION = 22,
+	NX_NAVIGATION = 21,
 } NxLenEnum;
 
 // 心跳帧数据结构 (CMD=0x03)
@@ -46,8 +47,8 @@ typedef struct
 {
     uint8_t target_found;     // 是否检测到目标 (0=未检测, 1=检测到)
     uint8_t target_id;        // 目标ID
-    int16_t yaw;              // 航向角 (度°)
-    int16_t pitch;            // 俯仰角 (度°)
+    float yaw;                // 航向角 (度°)
+    float pitch;              // 俯仰角 (度°)
     uint16_t distance;        // 距离 (cm)
     uint8_t nav_mode;         // 导航模式 (0=停止, 1=导航, 2=跟随)
     int16_t target_x;         // 目标X坐标 (mm)

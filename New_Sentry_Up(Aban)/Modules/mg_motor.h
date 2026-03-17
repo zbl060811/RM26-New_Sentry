@@ -76,6 +76,7 @@ typedef struct
 {
 	CAN_HandleTypeDef *hcan;
     MGMotorIDEnum motor_id;       // 电机ID
+	int32_t last_angle;	  	// 上一次的电机角度
     int32_t angle;          // 目标角度（单位：0.01度）
     int16_t speed;      // 最大速度（单位：0.01度/秒）
 } MotorControlParamsTypeDef;   // MG电机控制参数结构体

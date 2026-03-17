@@ -1,7 +1,6 @@
 #include "chassis.h"
 
 #include "led.h"
-#include "at9s.h"
 #include "filter.h"
 #include "communicate.h"
 
@@ -32,23 +31,23 @@ void Chassis_Init(void)
 	
 	// 底盘电机PID初始化
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed, 15, 0, 0, 8000, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_1].pid_speed, 16, 0, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed, 15, 0, 0, 8000, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_2].pid_speed, 16, 0, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed, 15, 0, 0, 8000, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_3].pid_speed, 16, 0, 0, 8000, 15000);
 	
 	Pid_Init(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed);
-	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed, 15, 0, 0, 8000, 15000);
+	Pid_Set(&Chassis.chassis_motor[DJI_MOTOR_M3508_CHASSIS_RX_4].pid_speed, 16, 0, 0, 8000, 15000);
 	
 	// 云台YAW电机PID初始化
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed);
-	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 2000, 0, 0, 3000, 20000);
+	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 3000, 0, 0, 3000, 20000);
 	
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle);
-	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 0.7, 0, 0, 3000, 20000);
+	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 0.5, 0, 0, 3000, 20000);
 
 	// 底盘跟随电机PID初始化
 	Pid_Init(&Chassis.chassis_follow.pid_angle);
@@ -116,14 +115,14 @@ void Chassis_Omni_Calc(void)
 
 	switch(Can_Communicate.data.sport_mode){
 		case CHASSIS_FOLLOW:
-			target_x = -At9s.at9s_rc.right_y * Chassis.x_ramp.max_speed;
-			target_y = At9s.at9s_rc.right_x * Chassis.y_ramp.max_speed;
+			target_x = -Can_Communicate.data.rc_right_y * Chassis.x_ramp.max_speed;
+			target_y = Can_Communicate.data.rc_right_x * Chassis.y_ramp.max_speed;
 			omega = Apply_Speed_Ramp(&Chassis.gryo_ramp, Chassis.chassis_follow.pid_angle.pid_data.output, dt);
 		break;
 
 		case CHASSIS_SPIN:
-			target_x = -At9s.at9s_rc.right_y * Chassis.x_ramp.max_speed;
-			target_y = At9s.at9s_rc.right_x * Chassis.y_ramp.max_speed;
+			target_x = -Can_Communicate.data.rc_right_y * Chassis.x_ramp.max_speed;
+			target_y = Can_Communicate.data.rc_right_x * Chassis.y_ramp.max_speed;
 			omega = Apply_Speed_Ramp(&Chassis.gryo_ramp, Chassis.gryo_ramp.max_speed, dt);
 		break;
 	}
@@ -178,7 +177,24 @@ void Chassis_Yaw_Calc(void)
 		first_enter = 0;
 	}
 
-	float target_angle_increment = -(At9s.at9s_rc.left_x * 0.15f);
+	float target_angle_increment = 0;
+	if(Can_Communicate.data.ctrl_mode == 1)
+	{
+		if(Can_Communicate.data.target_found == 1)
+		{
+			// target_angle_increment = (Can_Communicate.data.vision_yaw * 0.035f);
+			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+		}
+		else
+		{
+			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+		}
+	}
+	else
+	{
+		target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+	}
+
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle += target_angle_increment;
 
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle.pid_data.output = Pid_Calc(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 
@@ -208,11 +224,11 @@ void Chassis_Task(void)
 	Chassis.tick = 0;
 	
 	
-	Chassis_Omni_Get_Data();
-	Chassis_Yaw_Get_Data();
+	// Chassis_Omni_Get_Data();
+	// Chassis_Yaw_Get_Data();
 	
- 	Chassis_Omni_Calc();
-	Chassis_Yaw_Calc();
+ 	// Chassis_Omni_Calc();
+	// Chassis_Yaw_Calc();
 }
 
 

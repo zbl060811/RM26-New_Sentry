@@ -4,7 +4,6 @@
 
 #include "vofa.h"
 
-#include "at9s.h"
 #include "led.h"
 #include "buzzer.h"
 #include "hi12.h" 
@@ -20,8 +19,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		Chassis_Timing_Callback();
 		
 		Vofa_Timing_Callback();
-		
-		At9s_Timing_Callback();
 		
 		Led_Timing_Callback();
 		

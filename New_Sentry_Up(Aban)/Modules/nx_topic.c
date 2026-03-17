@@ -15,6 +15,8 @@ void Nx_Topic_Init(VisionTopicTyepDef *topic)
 }
 
 
+
+
 /**
  * @brief 计算校验和
  * @param buff 数据缓冲区
@@ -51,7 +53,7 @@ static void Nx_ParseHeartbeatFrame(uint8_t *payload, NxParsedFrameTypeDef *parse
     
     // 解析timestamp (uint32_t, 小端)
     heartbeat->timestamp = (uint32_t)(payload[1] | 
-                                      (payload[2] << 8) | 
+                                      (payload[2] << 8)  | 
                                       (payload[3] << 16) | 
                                       (payload[4] << 24));
     
@@ -72,10 +74,13 @@ static void Nx_ParseCombinedFrame(uint8_t *payload, NxParsedFrameTypeDef *parsed
     combined->target_found = payload[0];
     combined->target_id = payload[1];
     
-    // 解析int16_t (小端)
+    // 解析float (小端)
     combined->yaw = (int16_t)(payload[2] | (payload[3] << 8));
     combined->pitch = (int16_t)(payload[4] | (payload[5] << 8));
-    
+	
+	combined->yaw = combined->yaw / 100.0f;
+	combined->pitch = combined->pitch / 100.0f;
+	    
     // 解析uint16_t (小端)
     combined->distance = (uint16_t)(payload[6] | (payload[7] << 8));
     
@@ -105,7 +110,7 @@ void Nx_Topic_Data_Process(VisionTopicTyepDef *topic, uint8_t *buff, uint8_t siz
     uint8_t payload_len;
     
     // 清理解析结果
-    topic->parsed_frame.valid = 0;
+    topic->parsed_frame.valid = 0; 
     
     // 检查参数有效性
     if(buff == NULL || buff[0] != NX_RX_HEAD)
@@ -205,8 +210,12 @@ void Nx_PrintHeartbeatFrame(NxHeartbeatFrameTypeDef *heartbeat)
 }
 
 
+
 void Nx_Rx_Callback(VisionTopicTyepDef *topic, uint8_t *Buffer, uint8_t size)
 {
+    __HAL_UART_CLEAR_IDLEFLAG(&NX_USE_USART);
+    HAL_UART_DMAStop(&NX_USE_USART);
+
     Nx_Topic_Data_Process(topic, Buffer, size);
     Nx_Topic_Init(topic);		// 重置Topic以准备接收下一帧数据
 }

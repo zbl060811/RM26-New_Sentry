@@ -41,7 +41,7 @@ uint8_t Super_Cap_Set_Power(float target_power)
 	uint8_t send_buf[2] = {0};
 	
 	if(target_power < 30 || target_power > 130){
-		LOG_SUPER_CAP("super cap target power beyond reasonable limits");
+//		LOG_SUPER_CAP("super cap target power beyond reasonable limits");
 		return ERROR;
 	}
 	

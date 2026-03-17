@@ -11,7 +11,7 @@
 
 
 
-#define CHASSIS_TICK_TIME		1
+#define CHASSIS_TICK_TIME		5
 #define ENCODER_TO_ANGLE(x) ((float)(x) / 8192.0f * 360.0f)
 
 

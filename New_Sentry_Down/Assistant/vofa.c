@@ -109,11 +109,14 @@ void Vofa_Task(void)
 	// float gimbal_yaw_angle[] = {Gimbal.yaw_motor.target_angle, Gimbal.yaw_motor.current_angle, Hi14.hi_data.euler.yaw, At9s.at9s_rc.left_x};
 	float motor_angle[] ={Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle, 
 						  Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].current_angle,
-						  Can_Communicate.data.yaw};
+						  Can_Communicate.data.yaw,
+						  Can_Communicate.data.vision_yaw,
+						  Can_Communicate.data.vision_pitch,
+						};
 	// float fiction_speed[] = {Shoot.friction_motor[0].target_speed, Shoot.friction_motor[0].current_speed};
 
 	// 临时调试：直接查看原始编码器值和映射结果
-	Vofa_JustFloat_Send(motor_angle, 3);
+	Vofa_JustFloat_Send(motor_angle, 5);
 }
 
 

@@ -51,7 +51,6 @@ new_sentry\tim_callback.o: ../Assistant/curve_mapping.h
 new_sentry\tim_callback.o: ../Assistant/vofa.h
 new_sentry\tim_callback.o: ../Bsp/bsp_usart.h
 new_sentry\tim_callback.o: ../Inc/usart.h
-new_sentry\tim_callback.o: ../Modules/at9s.h
 new_sentry\tim_callback.o: ../Modules/led.h
 new_sentry\tim_callback.o: ../Inc/gpio.h
 new_sentry\tim_callback.o: ../Modules/buzzer.h

@@ -55,11 +55,12 @@ new_sentry\app.o: ../Callback/usart_callback.h
 new_sentry\app.o: ../Callback/can_callback.h
 new_sentry\app.o: ../Callback/tim_callback.h
 new_sentry\app.o: ../Inc/tim.h
-new_sentry\app.o: ../Modules/at9s.h
 new_sentry\app.o: ../Modules/buzzer.h
 new_sentry\app.o: ../Modules/led.h
 new_sentry\app.o: ../Inc/gpio.h
 new_sentry\app.o: ../Modules/super_cap.h
 new_sentry\app.o: ../Modules/hi12.h
 new_sentry\app.o: ../Modules/communicate.h
+new_sentry\app.o: ../Modules/referee.h
+new_sentry\app.o: ../Modules/referee_protocol.h
 new_sentry\app.o: ../Bsp/bsp_tim.h

@@ -1,18 +1,19 @@
 #include "usart_callback.h"
 
-#include "at9s.h"
 #include "hi12.h"
+
+#include "referee.h"
 
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-	if(huart == &huart3)
+	if(huart == &huart1)
 	{
-		At9s_Rx_Callback();
+//		Hi12_Rx_Callback(Size);
 	}
-	else if(huart == &huart1)
+	else if(huart == &huart6)
 	{
-		Hi12_Rx_Callback(Size);
+		 Referee_RX_Callback(Referee_Get_Buffer(), Size);
 	}
 }
 

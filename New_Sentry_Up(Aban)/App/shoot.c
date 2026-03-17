@@ -47,7 +47,7 @@ void Shoot_Control(void)
         case SHOOT_FIRE:
             Shoot.friction_motor[0].target_speed = -6000 * Dr16.data.RC_Value.Wheel;	// 根据遥控器拨轮的值调整射速
             Shoot.friction_motor[1].target_speed = 6000 * Dr16.data.RC_Value.Wheel;	
-            Shoot.dial_motor.target_speed = 8000;
+            Shoot.dial_motor.target_speed = 6000;
             break;
         case SHOOT_BACK:
             Shoot.friction_motor[0].target_speed = 0;
