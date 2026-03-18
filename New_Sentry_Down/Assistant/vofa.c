@@ -112,11 +112,12 @@ void Vofa_Task(void)
 						  Can_Communicate.data.yaw,
 						  Can_Communicate.data.vision_yaw,
 						  Can_Communicate.data.vision_pitch,
+						  Can_Communicate.data.target_found
 						};
 	// float fiction_speed[] = {Shoot.friction_motor[0].target_speed, Shoot.friction_motor[0].current_speed};
 
 	// 临时调试：直接查看原始编码器值和映射结果
-	Vofa_JustFloat_Send(motor_angle, 5);
+	Vofa_JustFloat_Send(motor_angle, 6);
 }
 
 

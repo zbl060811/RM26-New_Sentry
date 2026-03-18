@@ -63,11 +63,11 @@ void Chassis_Init(void)
 
 	Chassis.x_ramp.max_acceleration = 10000;
 	Chassis.x_ramp.max_deceleration = 8000;
-	Chassis.x_ramp.max_speed = 3000;
+	Chassis.x_ramp.max_speed = 4000;
 
 	Chassis.y_ramp.max_acceleration = 10000;
 	Chassis.y_ramp.max_deceleration = 8000;
-	Chassis.y_ramp.max_speed = 3000;
+	Chassis.y_ramp.max_speed = 4000;
 
 	Chassis.gryo_ramp.max_acceleration = 10000;
 	Chassis.gryo_ramp.max_deceleration = 10000;
@@ -182,17 +182,17 @@ void Chassis_Yaw_Calc(void)
 	{
 		if(Can_Communicate.data.target_found == 1)
 		{
-			// target_angle_increment = (Can_Communicate.data.vision_yaw * 0.035f);
-			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+			target_angle_increment = (Can_Communicate.data.vision_yaw * 0.03f);
+			// target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
 		}
 		else
 		{
-			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.4f);
 		}
 	}
 	else
 	{
-		target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.3f);
+		target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.4f);
 	}
 
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle += target_angle_increment;
@@ -224,11 +224,11 @@ void Chassis_Task(void)
 	Chassis.tick = 0;
 	
 	
-	// Chassis_Omni_Get_Data();
-	// Chassis_Yaw_Get_Data();
+	Chassis_Omni_Get_Data();
+	Chassis_Yaw_Get_Data();
 	
- 	// Chassis_Omni_Calc();
-	// Chassis_Yaw_Calc();
+ 	Chassis_Omni_Calc();
+	Chassis_Yaw_Calc();
 }
 
 
