@@ -2,6 +2,7 @@
 #include "robot.h"
 #include "dji_motor.h"
 #include "dr16.h"
+#include "nx_topic.h"
 
 
 
@@ -13,10 +14,10 @@ void Shoot_Init(void)
 	Shoot.flag = 1;
 
     Pid_Init(&Shoot.friction_motor[0].speed_pid);
-    Pid_Set(&Shoot.friction_motor[0].speed_pid, 2, 0, 0, 0, 10000);
+    Pid_Set(&Shoot.friction_motor[0].speed_pid, 3, 0, 0, 0, 20000);
 
     Pid_Init(&Shoot.friction_motor[1].speed_pid);
-    Pid_Set(&Shoot.friction_motor[1].speed_pid, 2, 0, 0, 0, 10000);
+    Pid_Set(&Shoot.friction_motor[1].speed_pid, 3, 0, 0, 0, 20000);
 
     Pid_Init(&Shoot.dial_motor.speed_pid);
     Pid_Set(&Shoot.dial_motor.speed_pid, 1.5, 0, 0, 0, 10000);
@@ -38,24 +39,62 @@ void Shoot_Dial_Get_Data(void)
 
 void Shoot_Control(void)
 {
-    switch(Robot.status.fire_mode){
-        case SHOOT_STOP:
-            Shoot.friction_motor[0].target_speed = 0;
-            Shoot.friction_motor[1].target_speed = 0;
-            Shoot.dial_motor.target_speed = 0;
+    if(Robot.status.control_mode == FIRE_MODE_MANUAL)
+    {
+        switch(Robot.status.fire_mode){
+            case SHOOT_STOP:
+                Shoot.friction_motor[0].target_speed = 0;
+                Shoot.friction_motor[1].target_speed = 0;
+                Shoot.dial_motor.target_speed = 0;
             break;
-        case SHOOT_FIRE:
-            Shoot.friction_motor[0].target_speed = -6000 * Dr16.data.RC_Value.Wheel;	// 根据遥控器拨轮的值调整射速
-            Shoot.friction_motor[1].target_speed = 6000 * Dr16.data.RC_Value.Wheel;	
+
+            case SHOOT_FIRE:
+                Shoot.friction_motor[0].target_speed = -6000 * Dr16.data.RC_Value.Wheel;	// 根据遥控器拨轮的值调整射速
+                Shoot.friction_motor[1].target_speed = 6000 * Dr16.data.RC_Value.Wheel;	
+                Shoot.dial_motor.target_speed = 6000;
+            break;
+
+            case SHOOT_BACK:
+                Shoot.friction_motor[0].target_speed = 0;
+                Shoot.friction_motor[1].target_speed = 0;
+                Shoot.dial_motor.target_speed = -1000;
+            break;
+        }
+    }
+    else if(Robot.status.control_mode == FIRE_MODE_DEBUG)
+    {
+        switch(Robot.status.fire_mode){
+            case SHOOT_STOP:
+                Shoot.friction_motor[0].target_speed = 0;
+                Shoot.friction_motor[1].target_speed = 0;
+                Shoot.dial_motor.target_speed = 0;
+            break;
+
+            case SHOOT_FIRE:
+                Shoot.friction_motor[0].target_speed = -6000 * Dr16.data.RC_Value.Wheel;	// 根据遥控器拨轮的值调整射速
+                Shoot.friction_motor[1].target_speed = 6000 * Dr16.data.RC_Value.Wheel;	
+                Shoot.dial_motor.target_speed = 6000;
+            break;
+
+            case SHOOT_BACK:
+                Shoot.friction_motor[0].target_speed = 0;
+                Shoot.friction_motor[1].target_speed = 0;
+                Shoot.dial_motor.target_speed = -1000;
+            break;
+        }
+    }
+    else if(Robot.status.control_mode == FIRE_MODE_AUTO)
+    {
+        Shoot.friction_motor[0].target_speed = -6000;	// 根据遥控器拨轮的值调整射速
+        Shoot.friction_motor[1].target_speed = 6000;	
+        if(vision_topic.parsed_frame.data.combined.target_found == 1)
+        {
             Shoot.dial_motor.target_speed = 6000;
-            break;
-        case SHOOT_BACK:
-            Shoot.friction_motor[0].target_speed = 0;
-            Shoot.friction_motor[1].target_speed = 0;
-            Shoot.dial_motor.target_speed = -1000;
-            break;
-        default:
-            break;
+        }
+        else
+        {
+            Shoot.dial_motor.target_speed = 0;
+        }
     }
 
     int16_t right_speed_out = Pid_Calc(&Shoot.friction_motor[0].speed_pid, Shoot.friction_motor[0].target_speed, Shoot.friction_motor[0].current_speed);

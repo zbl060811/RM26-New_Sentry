@@ -11,16 +11,16 @@
 
 
 
-#define CHASSIS_TICK_TIME		5
+#define CHASSIS_TICK_TIME		10
 #define ENCODER_TO_ANGLE(x) ((float)(x) / 8192.0f * 360.0f)
 
 
 
 #define SQRT_2_OVER_2 		0.70710678f     // 斜对角速度分解系数（用于轮子计算）
 #define YAW_ZERO_OFFSET_DEGREES 	75.0f	// yaw轴零位偏移角度
-#define GIMBAL_YAW_ENCODER_MIDDLE1 0      // 0°方向
-#define GIMBAL_YAW_ENCODER_MIDDLE2 4096   // 180°方向
-
+#define GIMBAL_YAW_ENCODER_MIDDLE1 	0       // 0°方向
+#define GIMBAL_YAW_ENCODER_MIDDLE2 	4096    // 180°方向
+ 
 // 运动学矩阵
 static const float MECANUM_MATRIX[4][3] = {
     {-SQRT_2_OVER_2, SQRT_2_OVER_2, 1},    // 左前轮

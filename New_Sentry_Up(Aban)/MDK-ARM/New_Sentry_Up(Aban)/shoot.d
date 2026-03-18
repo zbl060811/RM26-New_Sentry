@@ -45,3 +45,6 @@ new_sentry_up(aban)\shoot.o: ../Bsp/bsp_can.h
 new_sentry_up(aban)\shoot.o: ../Core/Inc/can.h
 new_sentry_up(aban)\shoot.o: ../Core/Inc/main.h
 new_sentry_up(aban)\shoot.o: ../Modules/dr16.h
+new_sentry_up(aban)\shoot.o: ../Modules/nx_topic.h
+new_sentry_up(aban)\shoot.o: ../Bsp/bsp_usart.h
+new_sentry_up(aban)\shoot.o: ../Core/Inc/usart.h

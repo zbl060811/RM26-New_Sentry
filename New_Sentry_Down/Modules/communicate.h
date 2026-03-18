@@ -27,6 +27,13 @@ typedef enum Can_Communicate_Type_Enum_T
     CAN_MSG_VISION = 0X03    // 视觉信息
 } CanCommunicateTypeEnum;
 
+typedef enum Robot_Control_Mode_Enum_T
+{
+    FIRE_MODE_MANUAL,   // 手动模式
+    FIRE_MODE_AUTO,     // 自动模式
+    FIRE_MODE_DEBUG,    // 调试模式
+} RobotControlModeEnum;
+
 typedef struct Can_Communicate_Data_Struct_T
 {
     uint8_t flag;

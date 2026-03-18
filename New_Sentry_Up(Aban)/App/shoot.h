@@ -7,7 +7,7 @@
 #include "pid.h"
 
 
-#define SHOOT_TICK_TIME		5
+#define SHOOT_TICK_TIME		1
 
 
 

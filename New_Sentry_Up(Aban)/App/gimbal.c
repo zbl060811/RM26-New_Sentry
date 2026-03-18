@@ -21,7 +21,7 @@ void Gimbal_Init(void)
 	
     // 初始化yaw电机PID参数
 	Pid_Init(&Gimbal.yaw_motor.pid_speed);
-	Pid_Set(&Gimbal.yaw_motor.pid_speed, 200, 25, 0, 0, 20000);
+	Pid_Set(&Gimbal.yaw_motor.pid_speed, 100, 25, 0, 0, 20000);
 	
 	Pid_Init(&Gimbal.yaw_motor.pid_angle);
 	Pid_Set(&Gimbal.yaw_motor.pid_angle, 3, 0.1, 0, 0, 20000);
@@ -134,10 +134,71 @@ void Gimbal_Yaw_Calc(void)
 }
 
 
+// void Gimbal_Pitch_Calc(void)
+// {
+//     #define PITCH_SCALE         10.0f    // 视觉角度到电机单位的换算
+//     #define PITCH_DEADZONE      0.3f     // 死区
+    
+//     // 遥控器输入
+//     #if CONFIG_USE_REMOTE
+//         float rc_input = Dr16.data.RC_Value.CH3;
+//     #else
+//         float rc_input = At9s.at9s_rc.left_y;
+//     #endif
+
+//     if(Robot.status.control_mode == FIRE_MODE_AUTO && 
+//        vision_topic.parsed_frame.data.combined.target_found == 1)
+//     {
+//         // 获取视觉偏差
+//         float pitch_error = vision_topic.parsed_frame.data.combined.pitch;
+        
+//         // 死区处理
+//         if(fabsf(pitch_error) < PITCH_DEADZONE)
+//         {
+//             pitch_error = 0;
+//         }
+        
+//         // 关键修改：期望角度 = 当前实际角度 + 偏差
+//         // 使用 current_angle（实际位置），而不是 params.angle（目标位置）
+//         float desired_angle = mg_motor.params.angle - pitch_error * PITCH_SCALE;
+//         float current_target = mg_motor.params.angle;
+//         float step = desired_angle - current_target;
+        
+//         mg_motor.params.angle = current_target + step;
+//     }
+//     else if(Robot.status.control_mode == FIRE_MODE_AUTO && 
+//             vision_topic.parsed_frame.data.combined.target_found == 0)
+//     {
+//         // 手动控制
+//         mg_motor.params.angle += rc_input * 100;
+//     }
+//     else 
+//     {
+//         // 手动控制
+//         mg_motor.params.angle += rc_input * 100;
+//     }
+
+
+//     // 执行控制
+//     if(mg_motor.params.last_angle != mg_motor.params.angle)
+//     {
+//         MG_Motor_PositionControl(&mg_motor);
+//         mg_motor.params.last_angle = mg_motor.params.angle;
+//     }
+// }
+
+
 void Gimbal_Pitch_Calc(void)
 {
     #define PITCH_SCALE         10.0f    // 视觉角度到电机单位的换算
     #define PITCH_DEADZONE      0.3f     // 死区
+    #define PITCH_LIMIT         19000.0f // 机械限位
+    #define SCAN_SPEED          30.0f    // 扫描速度（每周期增量）
+    #define SCAN_RANGE          150.0f   // 扫描范围（正负角度）
+    
+    // 静态变量用于扫描模式
+    static int8_t scan_direction = 1;    // 1:向上, 0:向下
+    static float scan_center = 0;          // 扫描中心点
     
     // 遥控器输入
     #if CONFIG_USE_REMOTE
@@ -146,29 +207,88 @@ void Gimbal_Pitch_Calc(void)
         float rc_input = At9s.at9s_rc.left_y;
     #endif
 
-    if(Robot.status.control_mode == FIRE_MODE_AUTO && 
-       vision_topic.parsed_frame.data.combined.target_found == 1)
+    // 自动模式
+    if(Robot.status.control_mode == FIRE_MODE_AUTO)
     {
-        // 获取视觉偏差
-        float pitch_error = vision_topic.parsed_frame.data.combined.pitch;
-        
-        // 死区处理
-        if(fabsf(pitch_error) < PITCH_DEADZONE)
+        if(vision_topic.parsed_frame.data.combined.target_found == 1)
         {
-            pitch_error = 0;
+            // 模式1：检测到目标 - 视觉跟踪
+            float pitch_error = vision_topic.parsed_frame.data.combined.pitch;
+            
+            // 死区处理
+            if(fabsf(pitch_error) < PITCH_DEADZONE)
+            {
+                pitch_error = 0;
+            }
+            
+            // 视觉跟踪：期望角度 = 当前实际角度 + 偏差
+            float desired_angle = mg_motor.params.angle - pitch_error * PITCH_SCALE;
+            
+            // 平滑移动到目标角度
+            float step = desired_angle - mg_motor.params.angle;
+            // 限制最大变化率
+            #define MAX_STEP_PER_CYCLE 50.0f
+            if(step > MAX_STEP_PER_CYCLE) step = MAX_STEP_PER_CYCLE;
+            if(step < -MAX_STEP_PER_CYCLE) step = -MAX_STEP_PER_CYCLE;
+            
+            mg_motor.params.angle += step;
+            
+            // 记录当前角度作为扫描中心（可选）
+            scan_center = mg_motor.params.angle;
         }
-        
-        // 关键修改：期望角度 = 当前实际角度 + 偏差
-        // 使用 current_angle（实际位置），而不是 params.angle（目标位置）
-        float desired_angle = mg_motor.params.angle - pitch_error * PITCH_SCALE;
-        float current_target = mg_motor.params.angle;
-        float step = desired_angle - current_target;
-        
-        mg_motor.params.angle = current_target + step;
+        // else  // target_found == 0
+        // {
+        //     // 模式2：未检测到目标 - 自动扫描
+            
+        //     // 方案A：周期性的上下扫描
+        //     mg_motor.params.angle += scan_direction * SCAN_SPEED;
+            
+        //     // 检查是否到达扫描边界
+        //     if(mg_motor.params.angle >= scan_center + SCAN_RANGE)
+        //     {
+        //         scan_direction = -1;  // 改为向下
+        //     }
+        //     else if(mg_motor.params.angle <= scan_center - SCAN_RANGE)
+        //     {
+        //         scan_direction = 1;   // 改为向上
+        //     }
+        // }
     }
-    else
+    else if(Robot.status.control_mode == FIRE_MODE_DEBUG) // 调试模式
     {
-        // 手动控制
+        if(vision_topic.parsed_frame.data.combined.target_found == 1)
+        {
+            // 模式1：检测到目标 - 视觉跟踪
+            float pitch_error = vision_topic.parsed_frame.data.combined.pitch;
+            
+            // 死区处理
+            if(fabsf(pitch_error) < PITCH_DEADZONE)
+            {
+                pitch_error = 0;
+            }
+            
+            // 视觉跟踪：期望角度 = 当前实际角度 + 偏差
+            float desired_angle = mg_motor.params.angle - pitch_error * PITCH_SCALE;
+            
+            // 平滑移动到目标角度
+            float step = desired_angle - mg_motor.params.angle;
+            // 限制最大变化率
+            #define MAX_STEP_PER_CYCLE 50.0f
+            if(step > MAX_STEP_PER_CYCLE) step = MAX_STEP_PER_CYCLE;
+            if(step < -MAX_STEP_PER_CYCLE) step = -MAX_STEP_PER_CYCLE;
+            
+            mg_motor.params.angle += step;
+            
+            // 记录当前角度作为扫描中心（可选）
+            scan_center = mg_motor.params.angle;
+        }
+        else  // target_found == 0
+        {
+            mg_motor.params.angle += rc_input * 100;
+        }
+    }
+    else if(Robot.status.control_mode == FIRE_MODE_MANUAL)
+    {
         mg_motor.params.angle += rc_input * 100;
     }
 
