@@ -22,7 +22,8 @@ typedef enum Public_Cmd_Type_Enum_T
 
     CAN_MSG_RC_LEFT = 0X01,    // 左遥控器信息(left_x, left_y)
     CAN_MSG_RC_RIGHT = 0X02,   // 右遥控器信息(right_x, right_y)
-    CAN_MSG_VISION = 0X03    // 视觉信息
+    CAN_MSG_VISION = 0X03,      // 视觉信息
+    CAN_MSG_HEAT = 0X04,       // 热量信息 
 } PublicCmdTypeEnum;
 
 

@@ -20,7 +20,6 @@
 
 
 
-
 typedef struct Can_Communicate_Struct_T
 {
     CAN_HandleTypeDef *hcan;
@@ -34,13 +33,17 @@ typedef struct Can_Communicate_Struct_T
 #pragma pack()
 
 
-
+extern CanCommunicateTypeDef CanCommunicate;
 
 
 /* *************** Communicate Function *************** */
 void Communicate_Init(void);
 void Communicate_Rx_Filter_Set(void);
 HAL_StatusTypeDef Communicate_Send(CanCommunicateTypeDef *can, uint8_t *data, uint8_t len);
+void Communicate_Data_Process(uint8_t *rx_buffer);
+char Communicate_Get_Data(CanCommunicateTypeDef *can, CAN_RxHeaderTypeDef *rxheader, uint8_t *rx_buffer);
+
+
 
 
 

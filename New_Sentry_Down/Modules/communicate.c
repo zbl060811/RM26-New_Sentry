@@ -1,4 +1,5 @@
 #include "communicate.h"
+#include "referee.h"
 
 
 
@@ -60,6 +61,21 @@ char Communicate_Get_Data(CanCommunicateTypeDef *can, CAN_RxHeaderTypeDef *rxhea
 }
 
 
+HAL_StatusTypeDef Communicate_Send(CanCommunicateTypeDef *can, uint8_t *data, uint8_t len)
+{
+    CAN_TxHeaderTypeDef tx_header;
+	uint32_t tx_email = CAN_TX_MAILBOX0;
+ 
+	tx_header.StdId = can->TX_STD_ID;
+	tx_header.IDE = CAN_ID_STD;
+	tx_header.RTR = CAN_RTR_DATA;
+	tx_header.DLC = len;
+	tx_header.TransmitGlobalTime = DISABLE;
+
+	return HAL_CAN_AddTxMessage(can->hcan, &tx_header, data, &tx_email);
+}
+
+
 void Communicate_Data_Process(uint8_t *rx_buffer)
 {   
     int16_t yaw_rate, yaw;
@@ -104,6 +120,17 @@ void Communicate_Data_Process(uint8_t *rx_buffer)
     }
 }
 
+void Communicate_Send_Data(void)
+{
+    uint8_t tx_buffer[8] = {0};
+
+    tx_buffer[0] = CAN_MSG_HEAT;
+    tx_buffer[1] = referee_info.PowerHeatData.shooter_17mm_1_barrel_heat << 8;
+    tx_buffer[2] = referee_info.PowerHeatData.shooter_17mm_1_barrel_heat;
+
+    Communicate_Send(&Can_Communicate, tx_buffer, CAN_CMD_MAX_DATA_LEN);
+}
+
 void Communicate_Task(void)
 {
     if(!Can_Communicate.data.flag || Can_Communicate.data.tick < CAN_COMMUNICATE_TICK_TIME){ 
@@ -111,6 +138,7 @@ void Communicate_Task(void)
 	}
     Can_Communicate.data.tick = 0;
 
+    Communicate_Send_Data();
 }
 
 

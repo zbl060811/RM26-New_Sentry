@@ -44,7 +44,7 @@ void Chassis_Init(void)
 	
 	// 云台YAW电机PID初始化
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed);
-	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 3000, 0, 300, 5000, 20000);
+	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_speed, 3000, 0, 400, 5000, 20000);
 	
 	Pid_Init(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle);
 	Pid_Set(&Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].pid_angle, 0.5f, 0, 0, 3000, 20000);
@@ -71,7 +71,7 @@ void Chassis_Init(void)
 
 	Chassis.gryo_ramp.max_acceleration = 10000;
 	Chassis.gryo_ramp.max_deceleration = 10000;
-	Chassis.gryo_ramp.max_speed = 5000;
+	Chassis.gryo_ramp.max_speed = 3000;
 
 }
 
@@ -188,7 +188,7 @@ void Chassis_Yaw_Calc(void)
 		}
 		else
 		{
-			target_angle_increment = 0.4f;
+			target_angle_increment = 0.45f;
 		}
 	}
 	else if(Can_Communicate.data.ctrl_mode == FIRE_MODE_DEBUG)		// 调试模式(带自瞄和 manual模式)
@@ -199,12 +199,12 @@ void Chassis_Yaw_Calc(void)
 		}
 		else 
 		{
-			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.5f);
+			target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.6f);
 		}
 	}
 	else if(Can_Communicate.data.ctrl_mode == FIRE_MODE_MANUAL)		// 手动模式
 	{
-		target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.5f);
+		target_angle_increment = -(Can_Communicate.data.rc_left_x * 0.6f);
 	}
 
 	Chassis.chassis_yaw_motor[DJI_MOTOR_6020_CHASSIS_YAW_RX_1].target_angle += target_angle_increment;

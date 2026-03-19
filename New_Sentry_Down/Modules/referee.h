@@ -37,7 +37,8 @@ typedef struct
 	ext_robot_hurt_t RobotHurt;							   // 0x0206
 	ext_shoot_data_t ShootData;							   // 0x0207
 	ext_projectile_allowance_t ProjectileAllowance;		   // 0x0208
-
+	
+	
 	uint8_t init_flag;
 
 } referee_info_t;

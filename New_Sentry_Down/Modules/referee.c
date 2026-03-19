@@ -13,6 +13,7 @@ uint8_t RE_RX_Buffer[RE_RX_BUFFER_SIZE];		// 裁判系统接收缓冲区
 												// static DaemonInstance *referee_daemon;		  // 裁判系统守护进程
 referee_info_t referee_info;					// 裁判系统数据
 
+	int i=0;
 /**
  * @brief  读取裁判数据,中断中读取保证速度
  * @param  buff: 读取到的裁判系统原始数据
@@ -78,6 +79,11 @@ static void JudgeReadData(uint8_t *buff)
 					case ID_projectile_allowance: // 0x0208
 						memcpy(&referee_info.ProjectileAllowance, (buff + DATA_Offset), LEN_projectile_allowance);
 						break;
+					case ID_student_interactive: // 0x0301   syhtodo接收代码未测试
+						
+//						i++;
+						//memcpy(&referee_info.ReceiveData, (buff + DATA_Offset), LEN_receive_data);
+                    break;
 				}
 			}
 		}

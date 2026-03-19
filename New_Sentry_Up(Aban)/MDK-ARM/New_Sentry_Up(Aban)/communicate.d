@@ -44,3 +44,5 @@ new_sentry_up(aban)\communicate.o: ../Core/Inc/main.h
 new_sentry_up(aban)\communicate.o: ..\Modules\at9s.h
 new_sentry_up(aban)\communicate.o: ../Core/Inc/usart.h
 new_sentry_up(aban)\communicate.o: ../Assistant/filter.h
+new_sentry_up(aban)\communicate.o: ../App/robot.h
+new_sentry_up(aban)\communicate.o: ../App/public_cmd.h

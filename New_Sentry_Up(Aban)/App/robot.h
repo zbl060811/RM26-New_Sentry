@@ -47,6 +47,8 @@ typedef struct Robot_Status_Strcut_T
     uint8_t power_mode;     // 电源策略
     uint8_t control_mode;   // 控制方式
     uint8_t fire_mode;      // 战斗模式
+
+    uint16_t heat_power;    // 热量
 } RobotStatusTypeDef;
 
 typedef struct Robot_Struct_T

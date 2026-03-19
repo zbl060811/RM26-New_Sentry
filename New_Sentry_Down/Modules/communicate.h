@@ -10,6 +10,10 @@
 
 #define CAN_COMMUNICATE_TICK_TIME   1
 
+#define CAN_CMD_MAX_DATA_LEN     8  // CAN数据帧最大长度
+
+
+
 // 本机ID：0X101     服务ID：0X100
 #define CAN_COMMUNICATE_LOCAL_ID      0X101        
 #define CAN_COMMUNICATE_SEND_ID       0X100
@@ -24,7 +28,8 @@ typedef enum Can_Communicate_Type_Enum_T
 
     CAN_MSG_RC_LEFT = 0X01,    // 左遥控器信息(left_x, left_y)
     CAN_MSG_RC_RIGHT = 0X02,   // 右遥控器信息(right_x, right_y)
-    CAN_MSG_VISION = 0X03    // 视觉信息
+    CAN_MSG_VISION = 0X03,     // 视觉信息
+    CAN_MSG_HEAT = 0X04,       // 热量信息 
 } CanCommunicateTypeEnum;
 
 typedef enum Robot_Control_Mode_Enum_T
@@ -56,6 +61,8 @@ typedef struct Can_Communicate_Data_Struct_T
     uint8_t target_id;        // 目标ID
     float vision_yaw;              // 目标相对yaw角
     float vision_pitch;            // 目标相对pitch角
+
+    uint16_t heat_power;    // 热量
 } CanCommunicateDataTypeDef;
 
 typedef struct Can_Communicate_Struct_T

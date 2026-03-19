@@ -1,6 +1,6 @@
 #include "can_callback.h"
 #include "dji_motor.h"
-
+#include "public_cmd.h"
 
 
 
@@ -28,6 +28,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		}
 		
 		Dji_Motor_Get_Data(DJI_SHOOT_GROUP, &rx_header, Bsp_Can2_Fifo0_Rx_Data);
+		Communicate_Get_Data(&Public.can_com, &rx_header, Bsp_Can2_Fifo0_Rx_Data);
 	}
 }
 

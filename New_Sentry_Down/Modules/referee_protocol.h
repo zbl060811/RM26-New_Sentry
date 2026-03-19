@@ -71,6 +71,7 @@ typedef enum
 	ID_shoot_data = 0x0207,				   // 实时射击数据
 	ID_projectile_allowance = 0x0208,	   // 允许发弹量
 	ID_student_interactive = 0x0301,	   // 机器人间交互数据
+
 } CmdID_e;
 
 /* 命令码数据段长,根据官方协议来定义长度，还有自定义数据长度 */
@@ -231,6 +232,8 @@ typedef struct
 	uint32_t rfid_status;
 	uint8_t rfid_status_2;
 } ext_rfid_status_t;
+
+
 
 
 /****************************机器人交互数据****************************/

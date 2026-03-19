@@ -85,11 +85,11 @@ void Shoot_Control(void)
     }
     else if(Robot.status.control_mode == FIRE_MODE_AUTO)
     {
-        Shoot.friction_motor[0].target_speed = -6000;	// 根据遥控器拨轮的值调整射速
-        Shoot.friction_motor[1].target_speed = 6000;	
+        Shoot.friction_motor[0].target_speed = -6200;	// 根据遥控器拨轮的值调整射速
+        Shoot.friction_motor[1].target_speed = 6200;	
         if(vision_topic.parsed_frame.data.combined.target_found == 1)
         {
-            Shoot.dial_motor.target_speed = 6000;
+            Shoot.dial_motor.target_speed = 5000;
         }
         else
         {
